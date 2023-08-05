@@ -14,7 +14,7 @@ export default function FirebaseSignIn() {
     const [err, setError] = useState("");
     const [loading, setLoader] = useState(false);
     const [data, setData] = useState({
-        "email": "adminreact@gmail.com",
+        "email": "admin@gmail.com",
         "password": "1234567890",
     })
     const { email, password } = data;
@@ -28,8 +28,6 @@ export default function FirebaseSignIn() {
         RouteChange();
         setLoader(false)
     }
-
-
 
     let navigate = useNavigate();
     const RouteChange = () => {

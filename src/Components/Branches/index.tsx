@@ -1,9 +1,8 @@
 import React from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
-import Pageheader from '../../Layouts/Pageheader/Pageheader';
-import { BasicDataTable } from './basic';
+import Pageheader from '../Layouts/Pageheader/Pageheader';
+import { BasicDataTable } from './list';
 import styles from './DataTables.module.scss';
-
 
 const DataTables = () => {
 

@@ -6,18 +6,18 @@ import { Button, Table } from 'react-bootstrap';
 
 export const COLUMNS:any = [
   {
-    Header: "Nombre",
+    Header: "Descripcion",
     accessor: "FNAME",
     className: "wd-15p border-bottom-0",
   },
   {
-    Header: "Apellido",
+    Header: "Categoria",
     accessor: "LNAME",
     className: "wd-15p border-bottom-0 ",
 
   },
   {
-    Header: "Usuario",
+    Header: "Marca",
     accessor: "USER",
     className: "wd-15p border-bottom-0 ",
   }
@@ -25,14 +25,24 @@ export const COLUMNS:any = [
 
 export const DATATABLE:any = [
   {
-    FNAME: 'Admin',
-    LNAME: 'Admin',
-    USER: 'admin',
+    FNAME: 'prod 1',
+    LNAME: 'cat 1',
+    USER: 'marca 1',
   },
   {
-    FNAME: 'Ricardo',
-    LNAME: 'Merino',
-    USER: 'rmerino',
+    FNAME: 'prod prueba',
+    LNAME: 'cat 1',
+    USER: 'marca 1',
+  },
+  {
+    FNAME: 'nuevo producto',
+    LNAME: 'cat 1',
+    USER: 'marca 1',
+  },
+  {
+    FNAME: 'producto 5',
+    LNAME: 'cat 1',
+    USER: 'marca 1',
   }
 ];
 export const BasicDataTable = () => {

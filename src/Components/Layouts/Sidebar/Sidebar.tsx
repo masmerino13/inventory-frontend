@@ -230,11 +230,8 @@ export default function Sidebar() {
          <PerfectScrollbar>
           <div className="main-sidebar-header active">
             <Link className="desktop-logo logo-light active" to={`${import.meta.env.BASE_URL}indexpage`}>
-              <img
-                src={logo}
-                className="main-logo"
-                alt="logo"
-              /></Link>
+              Max Bodega Logo
+              </Link>
             <Link className='desktop-logo logo-dark active' to={`${import.meta.env.BASE_URL}indexpage`}>
               <img
                 src={logoWhite}
@@ -262,8 +259,8 @@ export default function Sidebar() {
                   <img alt="user-img" src={faces6} /><span className="avatar-status profile-status bg-green"></span>
                 </div>
                 <div className="user-info">
-                  <h4 className="fw-semibold mt-3 mb-0">{outPut.firstName == undefined ? "Petey" : outPut.firstName} {outPut.lastName == undefined ? "Cruiser" : outPut.lastName}</h4>
-                  <span className="mb-0 text-muted">Premium Member</span>
+                  <h4 className="fw-semibold mt-3 mb-0">Ricardo Merino</h4>
+                  <span className="mb-0 text-muted">admin</span>
                 </div>
               </div>
             </div>

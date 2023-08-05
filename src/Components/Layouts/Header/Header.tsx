@@ -199,7 +199,7 @@ const Header = () => {
 							<Link className="close-toggle" to="#"><i className="header-icons fe fe-x"></i></Link>
 						</div>
 						<div className="main-header-center ms-3 d-sm-none d-md-none d-lg-block">
-							<input className="form-control" placeholder="Search for anything..." type="search" value={InputValue} onChange={(ele => { myfunction(ele.target.value); setInputValue(ele.target.value) })} /> <button className="btn"><i className="fas fa-search d-none d-md-block"></i></button>
+							<input className="form-control" placeholder="Buscar productos" type="search" value={InputValue} onChange={(ele => { myfunction(ele.target.value); setInputValue(ele.target.value) })} /> <button className="btn"><i className="fas fa-search d-none d-md-block"></i></button>
 						</div>
 						{show1 ?
 							<div className="card search-result p-absolute w-40 search-fix  border mt-1">
