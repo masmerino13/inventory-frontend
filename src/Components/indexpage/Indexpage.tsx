@@ -1,6 +1,5 @@
 import React from 'react';
 import { Row, Col, Card, ListGroup, Table, ProgressBar, Dropdown } from 'react-bootstrap';
-import { OrderStatus, Order, DangerEarnings, SuccessEarning, Sold, Samantha, Jimmy, Gabe, Manuel, Sharon, RecentOrder } from './Data/IndexpageData';
 import styles from './Indexpage.module.scss';
 import { Link } from 'react-router-dom';
 
@@ -151,8 +150,6 @@ const Indexpage = () => {
 								</div>
 							</div>
 						</div>
-
-						<Order />
 					</Card>
 				</Col>
 				<Col xl={3} lg={6} md={6} xm={12}>
@@ -174,7 +171,6 @@ const Indexpage = () => {
 								</div>
 							</div>
 						</div>
-						<DangerEarnings />
 					</Card>
 				</Col>
 				<Col xl={3} lg={6} md={6} xm={12}>
@@ -196,8 +192,6 @@ const Indexpage = () => {
 								</div>
 							</div>
 						</div>
-
-						<SuccessEarning />
 					</Card>
 				</Col>
 				<Col xl={3} lg={6} md={6} xm={12}>
@@ -219,8 +213,6 @@ const Indexpage = () => {
 								</div>
 							</div>
 						</div>
-
-						<Sold />
 					</Card>
 				</Col>
 			</Row>
@@ -256,8 +248,6 @@ const Indexpage = () => {
 									<h4>32,895</h4>
 								</div>
 							</div>
-
-							<OrderStatus />
 						</Card.Body>
 					</Card>
 				</Col>
@@ -327,8 +317,6 @@ const Indexpage = () => {
 													<p className="mb-0 tx-13 text-muted">User ID: #1234 <span className="text-success ms-2">Paid</span></p>
 												</div>
 												<span className="ms-auto wd-45p fs-16 mt-2">
-
-													<Samantha />
 												</span>
 											</div>
 										</div>
@@ -344,8 +332,6 @@ const Indexpage = () => {
 													<p className="mb-0 tx-13 text-muted">User ID: #1234 <span className="text-danger ms-2">Pending</span></p>
 												</div>
 												<span className="ms-auto wd-45p fs-16 mt-2">
-
-													<Jimmy />
 												</span>
 											</div>
 										</div>
@@ -361,8 +347,6 @@ const Indexpage = () => {
 													<p className="mb-0 tx-13 text-muted">User ID: #1234<span className="text-danger ms-2">Pending</span></p>
 												</div>
 												<span className="ms-auto wd-45p fs-16 mt-2">
-
-													<Gabe />
 												</span>
 											</div>
 										</div>
@@ -378,8 +362,6 @@ const Indexpage = () => {
 													<p className="mb-0 tx-13 text-muted">User ID: #1234<span className="text-success ms-2">Paid</span></p>
 												</div>
 												<span className="ms-auto wd-45p fs-16 mt-2">
-
-													<Manuel />
 												</span>
 											</div>
 										</div>
@@ -395,8 +377,6 @@ const Indexpage = () => {
 													<p className="b-0 tx-13 text-muted mb-0">User ID: #1234<span className="text-success ms-2">Paid</span></p>
 												</div>
 												<span className="ms-auto wd-45p fs-16 mt-2">
-
-													<Sharon />
 												</span>
 											</div>
 										</div>
@@ -443,7 +423,6 @@ const Indexpage = () => {
 							<p className="tx-12 mb-0 text-muted">An order is an investor's instructions to a broker or brokerage firm to purchase or sell</p>
 						</Card.Header>
 						<Card.Body className="sales-info ot-0 pb-0 pt-0">
-							<RecentOrder />
 							<Row className="sales-infomation pb-0 mb-0 mx-auto wd-100p justify-content-center">
 								<Col md={6}>
 									<p className="mb-0 d-flex"><span className="legend bg-primary brround"></span>Delivered</p>

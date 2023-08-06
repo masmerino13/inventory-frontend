@@ -1,7 +1,6 @@
-import { PODUCTDATA } from "../../Pages/Ecommerce/WishList/Data/wishlistData";
 import { checkHoriMenu, Horizontalmenudefultclose, switcherArrowFn } from './../../Layouts/Switcher/Data/SwitcherData';
 
-const data: any = PODUCTDATA
+const data: any = []
 
 //Elements
 const app = document.querySelector(".app")
