@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import favicon from '../assets/img/brand/favicon.png';
 import faviconWhite from '../assets/img/brand/favicon-white.png';
 import login from '../assets/img/pngs/8.png';
-import { auth } from '../Firebase/FirebaseCredential';
 
 
 
@@ -57,41 +56,26 @@ export default function FirebaseSignIn() {
                                     <Col md={10} lg={10} xl={9} className="mx-auto">
                                         <div className="card-sigin">
                                             <div className="mb-5 d-flex">
-                                                <Link to="#"><img src={favicon} className="sign-favicon-a ht-40" alt="logo" />
-                                                    <img src={faviconWhite} className="sign-favicon-b ht-40" alt="logo" />
-                                                </Link>
-                                                <h1 className="main-logo1 ms-1 me-0 my-auto tx-28">Va<span>le</span>x</h1>
+                                                <h1 className="main-logo1 ms-1 me-0 my-auto tx-28">Max<span>Bodega</span></h1>
                                             </div>
                                             <div className="card-sigin">
                                                 <div className="main-signup-header">
-                                                    <h2>Welcome back!</h2>
-                                                    <h5 className="fw-semibold mb-4">Please sign in to continue.</h5>
+                                                    <h2>Bienvenido!</h2>
+                                                    <h5 className="fw-semibold mb-4">Ingresar datos de usuario.</h5>
                                                     {err && <Alert variant="danger">{err}</Alert>}
                                                     <Form action="#">
                                                         <Form.Group>
-                                                            <Form.Label className="mb-2">Email</Form.Label>
+                                                            <Form.Label className="mb-2">Correo</Form.Label>
                                                             <Form.Control className="mb-3" name="email" placeholder="Enter your email" type="text" value={email} onChange={changeHandler} required />{" "}
                                                         </Form.Group>
                                                         <Form.Group>
-                                                            <Form.Label className="mb-2">Password</Form.Label>
+                                                            <Form.Label className="mb-2">Contraseña</Form.Label>
                                                             <Form.Control className="mb-3" name="password" placeholder="Enter your password" type="password" value={password} onChange={changeHandler} required />{" "}
                                                         </Form.Group>
                                                         <Button className="btn-main-primary btn-block" onClick={Login}>
-                                                            Sign In{loading ? <span role="status" aria-hidden="true" className="spinner-border spinner-border-sm ms-2"></span> : ""}
+                                                            Ingresar{loading ? <span role="status" aria-hidden="true" className="spinner-border spinner-border-sm ms-2"></span> : ""}
                                                         </Button>
-                                                        <Row className="row-xs">
-                                                            <Col sm={6} className="">
-                                                                <Button className="btn-block"><i className="fab fa-facebook-f"></i> Signup with Facebook</Button>
-                                                            </Col>
-                                                            <Col sm={6} className="mg-t-10 mg-sm-t-0">
-                                                                <Button className="btn-info btn-block btn-b"><i className="fab fa-twitter"></i> Signup with Twitter</Button>
-                                                            </Col>
-                                                        </Row>
                                                     </Form>
-                                                    <div className="main-signin-footer mt-5">
-                                                        <p><Link to="#">Forgot password?</Link></p>
-                                                        <p>Don't have an account? <Link to={`${import.meta.env.BASE_URL}FirebaseAuthentication/FirebaseSignUp`}>Create an Account</Link></p>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
