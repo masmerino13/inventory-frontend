@@ -1,33 +1,60 @@
 import React, { useState } from 'react'
 import { Alert, Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom';
+import { useMutation, useQueryClient } from 'react-query'
+
+import { authLogin } from '../../core/api';
+import { User } from '../../core/interfaces/user.interface'
 
 export default function SignIn() {
 
     const [err, setError] = useState("");
     const [loading, setLoader] = useState(false);
     const [data, setData] = useState({
-        "email": "",
+        "username": "",
         "password": "",
     })
     let navigate = useNavigate();
-    const { email, password } = data;
+    const { username, password } = data;
 
     const changeHandler = (e) => {
         setData({ ...data, [e.target.name]: e.target.value })
         setError("");
     }
 
-    const Login = (e) => {
-        setLoader(true)
-        e.preventDefault();
-        RouteChange();
-        setLoader(false)
-    }
-
     const RouteChange = () => {
         let path = `${import.meta.env.BASE_URL}indexpage`;
         navigate(path);
+    }
+
+    const queryClient = useQueryClient()
+
+    // @ts-ignore
+    const authMutation = useMutation<User | null, unknownn>(() => {
+        return authLogin(data.username, data.password)
+    }, {
+        onSuccess: (response) => {
+            console.log('response --', response)
+
+            queryClient.invalidateQueries('authLogin')
+            setLoader(false)
+
+            if (response) {
+                RouteChange()
+            }
+
+            return response
+        },
+        onError: (res) => {
+            console.log('response -- e', res)
+            return null;
+        }
+    })
+
+    const handleLogin = () => {
+        setLoader(true)
+
+        authMutation.mutate()
     }
 
     return (
@@ -61,13 +88,13 @@ export default function SignIn() {
                                                     <Form action="#">
                                                         <Form.Group>
                                                             <Form.Label className="mb-2">Correo</Form.Label>
-                                                            <Form.Control className="mb-3" name="email" placeholder="Enter your email" type="text" value={email} onChange={changeHandler} required />{" "}
+                                                            <Form.Control className="mb-3" name="username" placeholder="Usuario" type="text" value={username} onChange={changeHandler} required />{" "}
                                                         </Form.Group>
                                                         <Form.Group>
                                                             <Form.Label className="mb-2">Contraseña</Form.Label>
-                                                            <Form.Control className="mb-3" name="password" placeholder="Enter your password" type="password" value={password} onChange={changeHandler} required />{" "}
+                                                            <Form.Control className="mb-3" name="password" placeholder="Contraseña" type="password" value={password} onChange={changeHandler} required />{" "}
                                                         </Form.Group>
-                                                        <Button className="btn-main-primary btn-block" onClick={Login}>
+                                                        <Button className="btn-main-primary btn-block" onClick={handleLogin}>
                                                             Ingresar{loading ? <span role="status" aria-hidden="true" className="spinner-border spinner-border-sm ms-2"></span> : ""}
                                                         </Button>
                                                     </Form>

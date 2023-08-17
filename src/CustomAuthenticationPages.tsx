@@ -1,8 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import Switcher from './Components/Layouts/Switcher/Switcher';
 import { Outlet } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './Components/CommonFileComponents/redux/store';
 
 function CustomAuthenticationPages() {
 
@@ -13,12 +11,9 @@ function CustomAuthenticationPages() {
 
     return (
         <Fragment>
-            <Provider store={store}>
-            <Switcher />
             <div className="page">
                 <Outlet />
             </div>
-            </Provider>
         </Fragment>
     )
 }

@@ -4,8 +4,6 @@ import Rightside from './Components/Layouts/Rightside/Rightside';
 import { Outlet } from 'react-router-dom';
 import Footer from './Components/Layouts/Footer/Footer';
 import BacktoTop from './Components/Layouts/BacktoTop/BacktoTop';
-import { Provider } from 'react-redux';
-import store from './Components/CommonFileComponents/redux/store';
 import SwitcherHeader from './Components/Layouts/Header/SwitcherHeader';
 
 
@@ -26,7 +24,6 @@ function CustomSwitcher() {
 
     return (
         <Fragment>
-            <Provider store={store}>
                 <div className='horizontalMenucontainer'>
                     <div className="page custom-index">
                         <SwitcherHeader />
@@ -46,7 +43,6 @@ function CustomSwitcher() {
                     <Rightside />
                     <BacktoTop />
                 </div>
-            </Provider>
         </Fragment>
     )
 }

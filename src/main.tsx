@@ -95,6 +95,7 @@ root.render(
             <Route>
               <Route path={`${import.meta.env.BASE_URL}products`} element={<Products />} />
               <Route path={`${import.meta.env.BASE_URL}products/add`} element={<Usuarios />} />
+              <Route path={`${import.meta.env.BASE_URL}products/:id/detail`} element={<Usuarios />} />
             </Route>
           </Route>
         </Routes>

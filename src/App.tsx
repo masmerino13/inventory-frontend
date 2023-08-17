@@ -1,4 +1,10 @@
 import React, { Fragment, useEffect } from 'react'
+import {
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
+
 import Header from './Components/Layouts/Header/Header';
 import Switcher from './Components/Layouts/Switcher/Switcher';
 import Sidebar from './Components/Layouts/Sidebar/Sidebar';
@@ -6,9 +12,6 @@ import Rightside from './Components/Layouts/Rightside/Rightside';
 import { Outlet } from 'react-router-dom';
 import Footer from './Components/Layouts/Footer/Footer';
 import BacktoTop from './Components/Layouts/BacktoTop/BacktoTop';
-import { Provider } from 'react-redux';
-import store from './Components/CommonFileComponents/redux/store';
-
 
 export const RightSideBarclose = () => {
   //rightsidebar close function
@@ -34,28 +37,31 @@ function App() {
     document.querySelector("body")?.classList.add("main-body");
   }, []);
 
+  // Create a client
+  const queryClient = new QueryClient()
+
   return (
     <Fragment>
-      <Provider store={store}>
-      <div className='horizontalMenucontainer'>
-        <div className="page custom-index">
-        <Switcher />
-          <Header />
-          <div className="sticky" style={{ paddingTop: "-63px" }}>
-            <Sidebar />
-          </div>
-          <div className="jumps-prevent" style={{ paddingTop: "63px" }}></div>
-          <div className="main-content app-content" onClick={() => RightSideBarclose()}>
-            <div className="main-container container-fluid" >
-              <Outlet />
+      <QueryClientProvider client={queryClient}>
+        <div className='horizontalMenucontainer'>
+          <div className="page custom-index">
+            <Header />
+            <div className="sticky" style={{ paddingTop: "-63px" }}>
+              <Sidebar />
             </div>
+            <div className="jumps-prevent" style={{ paddingTop: "63px" }}></div>
+            <div className="main-content app-content" onClick={() => RightSideBarclose()}>
+              <div className="main-container container-fluid" >
+                <Outlet />
+              </div>
+            </div>
+          <Footer />
           </div>
-        <Footer />
+          <Rightside />
+          <BacktoTop />
         </div>
-        <Rightside />
-        <BacktoTop />
-      </div>
-      </Provider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
     </Fragment>
   )
 }
