@@ -33,4 +33,14 @@ export const getProducts = async (haystack: string) => {
   }
 }
 
+export const getProductDetail = async (id: string) => {
+  try {
+    const products = await axiosClient.get(`/products/${id}`)
+
+    return products.data
+  } catch (error) {
+    return null
+  }
+}
+
 export default axiosClient

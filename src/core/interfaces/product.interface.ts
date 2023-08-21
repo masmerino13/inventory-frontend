@@ -3,4 +3,5 @@ export interface Product {
   code: string
   description: string
   priceQuetzales: number
+  category?: string
 }

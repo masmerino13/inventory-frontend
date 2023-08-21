@@ -20,15 +20,6 @@ const FormValidation = lazy(() => import('./Components/Forms/FormValidation/Form
 const Formwizards = lazy(() => import('./Components/Forms/Formwizards/Formwizards'));
 const FormEditor = lazy(() => import('./Components/Forms/FormEditor/FormEditor'));
 const FormSize = lazy(() => import('./Components/Forms/FormSize/FormSize'));
-//Tables
-const BasicTables = lazy(() => import('./Components/Tables/BasicTables/BasicTables'));
-const DataTables = lazy(() => import('./Components/Tables/DataTables/DataTables'));
-const EditTables = lazy(() => import('./Components/Tables/EditTables/EditTables'));
-//Landing Page
-const LandingPage = lazy(() => import('./Components/LandingPage/LandingPage'));
-//Maps
-const Leaflet = lazy(() => import('./Components/Maps/Leaflet/Leaflet'));
-const Simplemaps = lazy(() => import('./Components/Maps/SimpleMaps/Simplemaps'));
 
 // Auth module
 const SignIn = lazy(() => import('./modules/auth/SignIn'));
@@ -38,6 +29,7 @@ const Usuarios = lazy(() => import('./Components/Usuarios'));
 
 // Products
 const Products = lazy(() => import('./Components/Products'));
+const ProductDetail = lazy(() => import('./modules/products/ProductDetail/ProductDetail'));
 
 const CustomAuthenticationPages = lazy(() => import('./CustomAuthenticationPages')); //custom error, authentication pages
 
@@ -95,7 +87,7 @@ root.render(
             <Route>
               <Route path={`${import.meta.env.BASE_URL}products`} element={<Products />} />
               <Route path={`${import.meta.env.BASE_URL}products/add`} element={<Usuarios />} />
-              <Route path={`${import.meta.env.BASE_URL}products/:id/detail`} element={<Usuarios />} />
+              <Route path={`${import.meta.env.BASE_URL}products/:id/detail`} element={<ProductDetail />} />
             </Route>
           </Route>
         </Routes>
