@@ -97,13 +97,8 @@ const Header = () => {
 	const [outPut, setoutPut] = useState(EditProfileService.returnId());
 	const [searching, setSearching] = useState(false);
 	const [InputValue, setInputValue] = useState("");
-	const [showResults, setShowResults] = useState(false);
-	const [searchcolor, setsearchcolor] = useState("text-dark");
-	const [searchval, setsearchval] = useState("Type something");
-	const [NavData, setNavData] = useState([]);
 
 	const queryClient = useQueryClient()
-
 
 	// @ts-ignore
 	const { mutateAsync, data: searchResults = [] } = useMutation<User | null, unknownn>(() => {
@@ -153,6 +148,13 @@ const Header = () => {
 		setoutPut(EditProfileService.returnId())
 	}, [location])
 
+	const handleResultSearchClicked = (productId) => {
+		// to={`/products/${product.id}/detail`}
+
+		setSearching(false)
+		setInputValue("")
+	}
+
 	return (
 		<div className={styles.Header}>
 			<Navbar className="main-header side-header sticky nav nav-item">
@@ -189,13 +191,21 @@ const Header = () => {
 								</div>
 								<ListGroup className='mt-2'>
 									{searchResults?.rows &&
-										searchResults?.rows.map((product: Product) =>
-											<ListGroup.Item key={product.id}>
-												<Link to={`/products/${product.id}/detail`} className='search-result-item' onClick={() => { setSearching(false), setInputValue("") }}>
+										searchResults?.rows?.slice(1, 15).map((product: Product) =>
+											<ListGroup.Item key={product.id} className='p-1'>
+												<Link replace to={`/products/${product.id}/detail?timestamp=${new Date().getTime()}`} className='search-result-item tx-12' onClick={() => { handleResultSearchClicked(product.id) }}>
 													{product.description}
+													<p className='text-sm tx-14 text-muted mb-0'>{product.code}</p>
 												</Link>
 											</ListGroup.Item>
 										)
+									}
+									{
+										searchResults?.rows?.length > 15 && <ListGroup.Item className='text-center'>
+										<Link to={`/products?haystack=${InputValue}`} className='search-result-item' onClick={() => { setSearching(false), setInputValue("") }}>
+											Ver todos los resultados
+										</Link>
+									</ListGroup.Item>
 									}
 								</ListGroup>
 

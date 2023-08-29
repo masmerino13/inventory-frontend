@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Card, Col, Dropdown, Form, Nav, ProgressBar, Row, Tab } from 'react-bootstrap';
 import { useMutation, useQueryClient, useQuery } from 'react-query'
 import { Link, useParams } from "react-router-dom";
 
 import { getProductDetail } from '../../../core/api'
 import { Product } from '../../../core/interfaces/product.interface'
+
+import currencyFormatting from '../../../utils/currencyFormatting'
+import friendlyDate from '../../../utils/friendlyDate'
 
 import Pageheader from '../../../Components/Layouts/Pageheader/Pageheader';
 import { Loader } from '../../../Components/common';
@@ -16,9 +19,14 @@ import faces6 from '../../../../src/assets/img/users/6.jpg';
 function ProductDetail() {
 	const { id = '' } = useParams();
 
-	const productDetail = useQuery<Product, Error>('product', () => getProductDetail(id))
+	useEffect(() => {
+		console.log('here --', id)
+		// productDetail.refetch()
+	}, [id])
 
-	console.log('productDetail', productDetail)
+	const productDetail = useQuery<Product, Error>('product', () => getProductDetail(id), {
+		enabled: !!id
+	})
 
 	return (
 		<div className={styles.Profile}>
@@ -29,7 +37,7 @@ function ProductDetail() {
 					productDetail.isLoading && <Loader />
 				}
 				{
-					productDetail.isFetched && <>
+					productDetail && productDetail.isFetched && <>
 						<Col xl={4}>
 							<Card className="mg-b-20">
 								<Card.Body>
@@ -42,17 +50,26 @@ function ProductDetail() {
 											<div className="d-flex justify-content-between mg-b-20">
 												<div>
 													<h5 className="main-profile-name">{productDetail.data?.description}</h5>
-													<p className="main-profile-name-text">{productDetail.data?.category}</p>
+													<p className="main-profile-name-text">{productDetail.data?.code}</p>
 												</div>
 											</div>
 											<h6>Codigo</h6>
 											<div className="main-profile-bio">{productDetail.data?.code}</div>
 											<h6>Precio Quetzales</h6>
-											<div className="main-profile-bio">{productDetail.data?.priceQuetzales}</div>
+											<div className="main-profile-bio">{productDetail.data && currencyFormatting(productDetail.data?.priceQuetzales, 'gtq')}</div>
 											<h6>Precio Dolares</h6>
-											<div className="main-profile-bio">{productDetail.data?.priceQuetzales}</div>
+											<div className="main-profile-bio">{productDetail.data && currencyFormatting(productDetail.data.price, 'usd')}</div>
 											<h6>Categoria</h6>
-											<div className="main-profile-bio">{productDetail.data?.category}</div>
+											<div className="main-profile-bio">{productDetail.data?.productCategory.name}</div>
+											<h6>Proveedor/Marca</h6>
+											<div className="main-profile-bio">-</div>
+											<h6>Informacion</h6>
+											<div className="main-profile-bio">{productDetail.data?.information}</div>
+											<h6>Carros</h6>
+											<div className="main-profile-bio">{productDetail.data?.cars}</div>
+											<Row className='row-sm tx-12'>
+												<Col xl={12}>Ultima actualización: {productDetail.data && friendlyDate(productDetail.data?.updatedAt)}</Col>
+											</Row>
 										</div>
 									</div>
 								</Card.Body>
@@ -99,7 +116,7 @@ function ProductDetail() {
 												</div>
 												<div className="ms-auto">
 													<h5 className="tx-13">Precio unitario</h5>
-													<h2 className="mb-0 tx-22 mb-1 mt-1">0.0</h2>
+													<h2 className="mb-0 tx-22 mb-1 mt-1">{productDetail.data && currencyFormatting(productDetail.data?.priceQuetzales, 'gtq')}</h2>
 												</div>
 											</div>
 										</Card.Body>
