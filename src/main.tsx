@@ -28,7 +28,7 @@ const SignIn = lazy(() => import('./modules/auth/SignIn'));
 const Usuarios = lazy(() => import('./Components/Usuarios'));
 
 // Products
-const Products = lazy(() => import('./Components/Products'));
+const Products = lazy(() => import('./modules/products/List'));
 const ProductDetail = lazy(() => import('./modules/products/ProductDetail/ProductDetail'));
 
 const CustomAuthenticationPages = lazy(() => import('./CustomAuthenticationPages')); //custom error, authentication pages
