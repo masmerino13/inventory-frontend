@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { Button, Card, Col, Dropdown, Form, Nav, ProgressBar, Row, Tab } from 'react-bootstrap';
+import { Card, Col, Nav, Row, Tab, Table } from 'react-bootstrap';
 import { useMutation, useQueryClient, useQuery } from 'react-query'
 import { Link, useParams } from "react-router-dom";
 
 import { getProductDetail } from '../../../core/api'
-import { Product } from '../../../core/interfaces/product.interface'
+import { Product, Equivalent } from '../../../core/interfaces/product.interface'
 
 import currencyFormatting from '../../../utils/currencyFormatting'
 import friendlyDate from '../../../utils/friendlyDate'
@@ -24,7 +24,7 @@ function ProductDetail() {
 		// productDetail.refetch()
 	}, [id])
 
-	const productDetail = useQuery<Product, Error>('product', () => getProductDetail(id), {
+	const productDetail = useQuery<Product, Error>(['product', id], () => getProductDetail(id), {
 		enabled: !!id
 	})
 
@@ -138,7 +138,34 @@ function ProductDetail() {
 
 										<Tab.Content className='border p-4 br-dark'>
 											<Tab.Pane eventKey="equivalentes">
-												<div></div>
+												<div>
+													<Table className="border-top-0 table-bordered text-nowrap border-bottom">
+														<thead>
+															<tr>
+																<th>
+																	<span className="tabletitle">Codigo</span>
+																</th>
+																<th>
+																	<span className="tabletitle">Proveedor/Marca</span>
+																</th>
+																<th>
+																	<span className="tabletitle">Eliminar</span>
+																</th>
+															</tr>
+														</thead>
+														<tbody>
+															{(productDetail.data?.equivalents || []).map((equivalent: Equivalent) => {
+																return (
+																	<tr className="text-center">
+																		<td>{equivalent.equivalentCode || '---'}</td>
+																		<td>{equivalent.equivalentVendor || '---'}</td>
+																		<td></td>
+																	</tr>
+																);
+															})}
+														</tbody>
+													</Table>
+												</div>
 											</Tab.Pane>
 											<Tab.Pane eventKey="kardex">
 												<div></div>
