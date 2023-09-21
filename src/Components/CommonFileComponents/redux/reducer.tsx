@@ -210,15 +210,11 @@ export default function reducer(state = data, action): any {
         st.match(new RegExp(`.{${chunkSize}}`, "g"));
     switch (type) {
         case "ADD_TO_CART":
-            state = PODUCTDATA.filter((idx) => {
-                return idx.id == payload
-            })
+            state = []
             return [...state]
             break;
         case "PRODUCT":
-            state = PODUCTDATA.filter((idx) => {
-                return idx.id == payload
-            })
+            state = []
             return state
             break;
         case "RTL":

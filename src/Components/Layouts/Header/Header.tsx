@@ -110,11 +110,11 @@ const Header = () => {
 					queryClient.invalidateQueries('getProducts')
 
 					if (response.length > 0) {
-						setShowResults(true)
+						// setShowResults(true)
 					}
 
 					if (response.length <= 0) {
-						setShowResults(false)
+						// setShowResults(false)
 						setSearching(false)
 					}
 
