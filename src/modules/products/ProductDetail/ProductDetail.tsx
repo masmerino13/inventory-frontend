@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Card, Col, Nav, Row, Tab, Table } from 'react-bootstrap';
-import { useMutation, useQueryClient, useQuery } from 'react-query'
+import { useQuery } from 'react-query'
 import { Link, useParams } from "react-router-dom";
 
 import { getProductDetail } from '../../../core/api'
@@ -18,11 +18,6 @@ import faces6 from '../../../../src/assets/img/users/6.jpg';
 
 function ProductDetail() {
 	const { id = '' } = useParams();
-
-	useEffect(() => {
-		console.log('here --', id)
-		// productDetail.refetch()
-	}, [id])
 
 	const productDetail = useQuery<Product, Error>(['product', id], () => getProductDetail(id), {
 		enabled: !!id

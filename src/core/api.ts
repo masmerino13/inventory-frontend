@@ -43,4 +43,14 @@ export const getProductDetail = async (id: string) => {
   }
 }
 
+export const getAllProducts = async () => {
+  try {
+    const products = await axiosClient.get('/products/all')
+
+    return products.data
+  } catch (error) {
+    return []
+  }
+}
+
 export default axiosClient

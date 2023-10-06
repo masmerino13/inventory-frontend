@@ -1,8 +1,7 @@
 import React from 'react';
 import { useTable, useSortBy, useGlobalFilter, usePagination, } from "react-table";
 import { Button, Table } from 'react-bootstrap';
-
-
+import { Link, useLocation } from 'react-router-dom';
 
 export const COLUMNS:any = [
   {
@@ -45,12 +44,12 @@ export const DATATABLE:any = [
     USER: 'marca 1',
   }
 ];
-export const BasicDataTable = () => {
+export const BasicDataTable = ({ data }) => {
 
   const tableInstance:any = useTable(
     {
       columns: COLUMNS,
-      data: DATATABLE,
+      data: data,
     },
     useGlobalFilter,
     useSortBy,
@@ -79,7 +78,6 @@ export const BasicDataTable = () => {
 
   return (
     <>
-
       <div className="e-table pb-5">
         <div className="d-block">
           <select
@@ -132,7 +130,11 @@ export const BasicDataTable = () => {
                   <tr className="text-center" {...row.getRowProps()}>
                     {row.cells.map((cell) => {
                       return (
-                        <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                        <td {...cell.getCellProps()}>
+                          <Link replace to={`/products/${cell.row.original.productId}/detail?timestamp=${new Date().getTime()}`} className='search-result-item tx-12' onClick={() => { handleResultSearchClicked(product.id) }}>
+                            {cell.render("Cell")}
+                          </Link>
+                        </td>
                       );
                     })}
                   </tr>
